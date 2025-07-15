@@ -1,0 +1,15 @@
+apiVersion: 1
+
+datasources:
+  - name: InfluxDB
+    type: influxdb
+    access: proxy
+    url: http://influxdb:8086  # Usar el nombre del servicio 'influxdb' para la red Docker
+    isDefault: true
+    jsonData:
+      version: Flux
+      organization: udc
+      defaultBucket: my_bucket
+      timeInterval: "5s"
+    secureJsonData:
+      token: mVvggDDebtBEq55cVThEUVzqhFqvk7YnD5GnBe_m2MkCfjyGafOZuSdBQrEtI7ZBFwf8c5Iuc_CJ3WBReSYNAw==

@@ -1,0 +1,44 @@
+
+services:
+  influxdb:
+    image: influxdb:latest
+    container_name: influxdb
+    environment:
+      DOCKER_INFLUXDB_INIT_MODE: setup
+      DOCKER_INFLUXDB_INIT_USERNAME: admin  # Usuario administrador
+      DOCKER_INFLUXDB_INIT_PASSWORD: password  # Contraseña del administrador
+      DOCKER_INFLUXDB_INIT_ORG: udc  # Nombre de la organización
+      DOCKER_INFLUXDB_INIT_BUCKET: my_bucket  # Nombre del bucket
+      DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: mVvggDDebtBEq55cVThEUVzqhFqvk7YnD5GnBe_m2MkCfjyGafOZuSdBQrEtI7ZBFwf8c5Iuc_CJ3WBReSYNAw==
+      DOCKER_INFLUXDB_INIT_RETENTION: 0
+    ports:
+      - "8086:8086"  # Mapea el puerto 8086 para acceder a InfluxDB desde fuera del contenedor
+    volumes:
+      - type: volume
+        source: influxdb2-data
+        target: /var/lib/influxdb2    
+    networks:
+      - influxdb_network
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: admin  # Contraseña del administrador de Grafana
+    ports:
+      - "3000:3000"  # Mapea el puerto 3000 de Grafana al puerto 3000 de la máquina local
+    volumes:
+      - grafana-data:/var/lib/grafana  # Volumen para datos persistentes de Grafana
+      - ./provisioning:/etc/grafana/provisioning  # Volumen con dashboards
+    depends_on:
+      - influxdb  # Asegura que InfluxDB esté corriendo antes de que Grafana se inicie
+    networks:
+      - influxdb_network
+
+volumes:
+  influxdb2-data:  # Volumen persistente para los datos de InfluxDB
+  grafana-data:   # Volumen persistente para los datos de Grafana
+
+networks:
+  influxdb_network:
+    driver: bridge

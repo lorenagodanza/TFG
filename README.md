@@ -15,7 +15,7 @@ Instrucciones para replicar el proyecto
 4. Crear un grupo de Telegram incluyendo el bot creado y los usuarios a los que le deben llegar las alertas
 5. Enviar un mensaje al grupo
 6. Hacer petición https://api.telegram.org/bot<TU_TOKEN>/getUpdates para ver el CHAT_ID
-   6.1 Si no funciona, conceder al bot permisos de admin en el grupo
+7. Si no funciona, conceder al bot permisos de admin en el grupo
 
 ### WINDOWS
 Instalar y ejecutar Bonojour: https://support.apple.com/es-es/106380

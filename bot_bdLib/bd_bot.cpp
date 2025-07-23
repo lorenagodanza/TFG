@@ -2,10 +2,10 @@
 #include <vector>
 
 // Configuración del bot de Telegram
-const char* BOTtoken = "7773832019:AAFph3-_Tux99WRPbZmyIfHAdsdD92AMmfw";
-const char* CHAT_ID = "572950870";
+const char* BOTtoken = "token del bot";
+const char* CHAT_ID = "token del chat";
 
-// Configuración de InfluxDB
+// Configuración de InfluxDB (estos datos están en el docker-compose)
 const char* INFLUXDB_URL = "http://MacBook-Pro-de-Lorena.local:8086";
 const char* INFLUXDB_TOKEN = "mVvggDDebtBEq55cVThEUVzqhFqvk7YnD5GnBe_m2MkCfjyGafOZuSdBQrEtI7ZBFwf8c5Iuc_CJ3WBReSYNAw==";
 const char* INFLUXDB_ORG = "udc";
